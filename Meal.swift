@@ -2,7 +2,7 @@
 //  Meal.swift
 //  FoodTracker
 //
-//  Created by Tommy Zheng on 11/10/16.
+//  Created by Tommy Zheng on 10/05/16.
 //  Copyright © 2016 Apple Inc. All rights reserved.
 //
 
