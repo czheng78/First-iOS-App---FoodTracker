@@ -8,8 +8,24 @@
 
 import UIKit
 import os.log
+import FirebaseAuth
+import FirebaseDatabase
 
 class MealTableViewController: UITableViewController {
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            dismiss(animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
+    
+    var ref: DatabaseReference?
+    var databaseHandle:DatabaseHandle?
     
     //MARK: Properties
     
@@ -18,6 +34,8 @@ class MealTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ref = Database.database().reference()
+        
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -25,15 +43,17 @@ class MealTableViewController: UITableViewController {
         if let savedMeals = loadMeals() {
             meals += savedMeals
         }
-        else {
-            // Load the sample data.
-            loadSampleMeals()
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        databaseHandle = ref?.child("Meals").observe(.childAdded, with: { (snapshot) in
+            
+            // Code to execute when a child is added under "Meals"
+            let post = snapshot.value as? Meal
+            if let actualmeal = post {
+                self.meals.append(actualmeal)
+                
+                self.tableView.reloadData()
+            }
+        })
     }
 
     //MARK: - Table view data source
@@ -88,23 +108,6 @@ class MealTableViewController: UITableViewController {
         }    
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
     //MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -116,6 +119,7 @@ class MealTableViewController: UITableViewController {
             
         case "AddItem":
             os_log("Adding a new meal.", log: OSLog.default, type: .debug)
+            
         case "signOutSegue":
             os_log("Signing Out.", log: OSLog.default, type: .debug)
             
@@ -157,6 +161,9 @@ class MealTableViewController: UITableViewController {
                 
                 meals.append(meal)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
+                
+                ref?.child("Meals").childByAutoId().setValue(meal.name)
+                
             }
             
             // Save the meals.
@@ -165,27 +172,7 @@ class MealTableViewController: UITableViewController {
     }
     
     //MARK: Private Methods
-    
-    private func loadSampleMeals() {
-        
-        let photo1 = UIImage(named: "meal1")
-        let photo2 = UIImage(named: "meal2")
-        let photo3 = UIImage(named: "meal3")
 
-        guard let meal1 = Meal(name: "Caprese Salad", photo: photo1, rating: 4) else {
-            fatalError("Unable to instantiate meal1")
-        }
-
-        guard let meal2 = Meal(name: "Chicken and Potatoes", photo: photo2, rating: 5) else {
-            fatalError("Unable to instantiate meal2")
-        }
-
-        guard let meal3 = Meal(name: "Pasta with Meatballs", photo: photo3, rating: 3) else {
-            fatalError("Unable to instantiate meal2")
-        }
-
-        meals += [meal1, meal2, meal3]
-    }
     
     private func saveMeals() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(meals, toFile: Meal.ArchiveURL.path)
