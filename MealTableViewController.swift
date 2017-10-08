@@ -2,7 +2,7 @@
 //  MealTableViewController.swift
 //  FoodTracker
 //
-//  Created by Tommy Zheng on 11/15/16.
+//  Created by Tommy Zheng on 10/05/16.
 //  Copyright © 2016 Apple Inc. All rights reserved.
 //
 
@@ -116,6 +116,8 @@ class MealTableViewController: UITableViewController {
             
         case "AddItem":
             os_log("Adding a new meal.", log: OSLog.default, type: .debug)
+        case "signOutSegue":
+            os_log("Signing Out.", log: OSLog.default, type: .debug)
             
         case "ShowDetail":
             guard let mealDetailViewController = segue.destination as? MealViewController else {
