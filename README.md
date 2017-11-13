@@ -9,3 +9,10 @@ Objectives of this Project:
 -Learn to build a simple iOS app, FoodTracker, an example provided online. 
 
 -Added Firebase Authentication to the FoodTracker
+
+
+HOW TO OPEN:
+
+- Download the whole zip file from here
+
+- Run the FoodTracker.xcworkspace file in the folder
