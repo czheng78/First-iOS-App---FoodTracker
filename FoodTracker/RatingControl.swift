@@ -2,7 +2,7 @@
 //  RatingControl.swift
 //  FoodTracker
 //
-//  Created by Tommy Zheng on 10/06/16.
+//  Created by Tommy Zheng on 10/06/17.
 //  Copyright © 2017 Apple Inc. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  FoodTracker
 //
-//  Created by Tommy Zheng on 10/05/16.
+//  Created by Tommy Zheng on 10/05/17.
 //  Copyright © 2017 Apple Inc. All rights reserved.
 //
 

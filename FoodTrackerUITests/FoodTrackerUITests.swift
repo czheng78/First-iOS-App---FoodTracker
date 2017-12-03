@@ -31,23 +31,23 @@ class FoodTrackerUITests: XCTestCase {
     func testExample() {
         
         let app = XCUIApplication()
-        let element = app.otherElements.containing(.staticText, identifier:"Please enter your Email and Password.").children(matching: .other).element(boundBy: 0)
+        app/*@START_MENU_TOKEN@*/.buttons["Sign Up"]/*[[".segmentedControls.buttons[\"Sign Up\"]",".buttons[\"Sign Up\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let element = app.otherElements.containing(.staticText, identifier:"Create an account. Thank You!").children(matching: .other).element(boundBy: 0)
         let textField = element.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
         textField.tap()
         textField.typeText("zh_ng123@yahoo.com")
         
         let secureTextField = element.children(matching: .other).element(boundBy: 1).children(matching: .secureTextField).element
         secureTextField.tap()
-        secureTextField.typeText("test123456")
-        element.children(matching: .button)["Sign In"].tap()
+        secureTextField.typeText("test123")
+        element.children(matching: .button)["Sign Up"].tap()
         
         let element2 = app.otherElements.containing(.staticText, identifier:"Try Again.").children(matching: .other).element(boundBy: 0)
-        let secureTextField2 = element2.children(matching: .other).element(boundBy: 1).children(matching: .secureTextField).element
-        secureTextField2.swipeLeft()
-        secureTextField2.tap()
-        secureTextField2.typeText("test123")
-        element2.children(matching: .button)["Sign In"].tap()
-        app.navigationBars["Your Meals"].buttons["Add"].tap()
+        let textField2 = element2.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
+        textField2.tap()
+        textField2.typeText("cxx@fdsfsfds.cdf")
+        element2.children(matching: .button)["Sign Up"].tap()
        
     }
     
