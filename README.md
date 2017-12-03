@@ -19,6 +19,6 @@ HOW TO OPEN:
 
 HWK5 UNIT TEST:
 
-- The folder called "FoodTrackerUITests" contains Swift codes to test the Food tracker app with authentication included
+- The folder called "FoodTrackerUITests" contains Swift codes to test the Food tracker app with authentication included. This uses the built-in automation in XCode to do the Black Box Testing. 
 
 - The "EC601_Test_Cases.xlsx" file recordes all the test cases that I did for this iOS app
