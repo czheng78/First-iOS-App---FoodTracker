@@ -22,3 +22,5 @@ HWK5 UNIT TEST:
 - The folder called "FoodTrackerUITests" contains Swift codes to test the Food tracker app with authentication included. This uses the built-in automation in XCode to do the automated testing. 
 
 - The "EC601_Test_Cases.xlsx" file recordes all the test cases that I did for this iOS app
+
+- The folder called "FoodTrackerTest" contains a Swift code to test the meal table and the add meal page.
