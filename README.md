@@ -17,7 +17,7 @@ HOW TO OPEN:
 
 - Run the FoodTracker.xcworkspace file in the folder
 
-HWK5 UNIT TEST:
+HWK5 UNIT TEST (In the Folder 'Test'):
 
 - The folder called "FoodTrackerUITests" contains Swift codes to test the Food tracker app with authentication included. This uses the built-in automation in XCode to do the automated testing. 
 
